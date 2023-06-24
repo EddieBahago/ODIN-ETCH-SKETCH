@@ -1,6 +1,12 @@
+let color = "black";
+
 document.addEventListener("DOMContentLoaded", function(){
    creatBoard(16);
-    console.log("hi")
+   let btn_popup = document.querySelector("#popup");
+   btn_popup.addEventListener("click", function(){
+    let size = getsize();
+    creatBoard(size);
+   })
 })
 
 function creatBoard(size){
@@ -11,8 +17,40 @@ container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
 for (let i = 0; i < 256; i++) {
     let square = document.createElement("div");
-    square.style.backgroundColor = "blue";
+    square.addEventListener("mouseover", colorsquare);
     container.insertAdjacentElement("beforeend", square);
 }
 
+}
+function getsize(){
+    let input = prompt("what will be the size of the container?");
+    let message = document.querySelector("#message");
+    if(input == ""){
+        message.innerHTML = "please provide a number"
+    }
+    else if(input < 0 || input > 100){
+        message.innerHTML = "provide a number between 1 and 100"
+    }
+    else{
+        message.innerHTML = "Now you can play"
+        return input;
+    }
+}
+
+function colorsquare(){
+    if(color == "Random"){
+        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`
+    }
+    else{
+        this.style.backgroundColor = 'black'
+    }
+}
+
+function setColor(colorChoice){
+    color = colorChoice;
+}
+
+function resetBoard(){
+    let divs = document.querySelectorAll("div")
+    divs.forEach((div) => div.style.backgroundcolor = white)
 }
