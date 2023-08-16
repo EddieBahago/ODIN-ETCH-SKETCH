@@ -61,11 +61,11 @@ function colorsquare(){
 }
 }
 
-function setColor(colorChoice){
+function setcolor(colorChoice){
     color = colorChoice;
 }
 
 function resetBoard(){
     let divs = document.querySelectorAll("div")
-    divs.forEach((div) => div.style.backgroundcolor = white)
+    divs.forEach((div) => div.style.backgroundColor = 'white')
 }
